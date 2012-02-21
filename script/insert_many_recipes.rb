@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby1.8
+#!/usr/bin/env ruby
 
 require File.expand_path('../../config/environment', __FILE__)
 

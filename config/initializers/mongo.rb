@@ -1,6 +1,6 @@
-MongoMapper.connection = Mongo::Connection.new('localhost', 20100)
+MongoMapper.connection = Mongo::Connection.new('localhost', 27017)
 #MongoMapper.connection = Mongo::Connection.new('localhost', 27017)
-MongoMapper.database = "#mongodb_app-#{Rails.env}"
+MongoMapper.database = "rails_app-#{Rails.env}"
 
 if defined?(PhusionPassenger)
    PhusionPassenger.on_event(:starting_worker_process) do |forked|
