@@ -10,7 +10,20 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <% @ingredients.each do |i| %>
+      <div class="field">
+	Amount:
+	<%= text_field :i, :amount, :name => 'i[][amount]' %>
+      </div>
+      <div class="field">
+	Stuff:
+	<%= text_field :i, :stuff, :name => 'i[][stuff]'  %>
+      </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -5,8 +5,8 @@ require 'mongo'
 source 'http://gemcutter.org'
 
 gem 'rails', '3.2.1'
-gem "mongo_mapper"
-
+gem 'mongo_mapper'
+gem 'bson_ext'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -41,3 +41,8 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug'
+
+# For running profiling/benchmarks
+# (Message was: Specify ruby-prof as application's dependency in Gemfile to run benchmarks.)
+
+gem 'ruby-prof'

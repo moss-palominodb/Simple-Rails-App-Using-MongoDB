@@ -25,7 +25,7 @@ class RecipesController < ApplicationController
   # GET /recipes/new.json
   def new
     @recipe = Recipe.new
-
+    @ingredients = Array.new(10, Ingredient.new)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render :json => @recipe }
@@ -35,13 +35,16 @@ class RecipesController < ApplicationController
   # GET /recipes/1/edit
   def edit
     @recipe = Recipe.find(params[:id])
+    @ingredients = @recipe.ingredients
   end
 
   # POST /recipes
   # POST /recipes.json
   def create
     @recipe = Recipe.new(params[:recipe])
-
+    params[:i].each do |ingredient|
+      @recipe.ingredients << Ingredient.new(ingredient) if (!ingredient[:amount].empty? and !ingredient[:stuff].empty?)
+    end
     respond_to do |format|
       if @recipe.save
         format.html { redirect_to @recipe, :notice => 'Recipe was successfully created.' }
