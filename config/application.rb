@@ -65,5 +65,6 @@ module MongodbApp
     config.generators do |g|
       g.orm :mongo_mapper
     end
+
   end
 end

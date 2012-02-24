@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require File.expand_path('../../config/environment', __FILE__)
+HOST_AND_PORT = "localhost:3000"
 
 def get_name
   ['Chocolate Cake',
@@ -9,26 +9,16 @@ def get_name
    'Strawberry Milkshake'].sample
 end
 
-def get_ingredients
-  ingredients = []
-  r = rand(20)
-  (1..r).each do |x|
-    ingredients << Ingredient.new(:amount => get_amount, :stuff => get_stuff)
-  end
-  ingredients
-end
-
 def get_stuff
   ['glass water', 'tablespoon vanilla', 'cup flour', 'stick butter'].sample 
 end
 
-def get_amount
-  ['1', '1/2', '3', '4.5'].sample
-end
-
-(1..20000).each do |num|
-  r = Recipe.new(:name => get_name + ' ' + num.to_s,
-                 :ingredients => get_ingredients)
-  puts r.inspect
-  r.save
+(1..20).each do |num|
+  command_string = "curl -d recipe[name]=\"#{get_name} #{num}\" -d action=create http://#{HOST_AND_PORT}/admin/recipes"
+  name = get_name
+  (1..5).each do |amount|
+    stuff = get_stuff
+    command_string << " -d i[][amount]=#{amount} -d i[][stuff]=\"#{get_stuff}\""
+  end
+  `#{command_string}`
 end
